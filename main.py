@@ -1,5 +1,7 @@
 import requests as req
 import datetime as dt
+import schedule
+import time
 
 API_HEAD = 'https://cdn-api.co-vin.in/api'
 
@@ -85,12 +87,20 @@ def make_date_range(sdate, edate):
     return [d.strftime('%d-%m-%Y') for d in dates]
 
 
-if __name__ == '__main__':
-    states = get_states()
+def check():
     get_appointments(['Karnataka'],
                      make_date_range(
-                         (dt.datetime.today() + dt.timedelta(days=2)).strftime(
+                         (dt.datetime.today() + dt.timedelta(days=4)).strftime(
                              '%d-%m-%Y'),
-                         (dt.datetime.today() + dt.timedelta(days=6)).strftime(
+                         (dt.datetime.today() + dt.timedelta(days=10)).strftime(
                              '%d-%m-%Y')),
-                     minage=45, district_substrings=['urban', 'bbmp'])
+                     minage=18, district_substrings=None)
+    print('*' * 20)
+
+
+if __name__ == '__main__':
+    schedule.every().hour.do(check)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
