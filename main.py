@@ -99,7 +99,7 @@ def check():
 
 
 if __name__ == '__main__':
-    schedule.every().hour.do(check)
+    schedule.every(10).minutes.do(check)
 
     while True:
         schedule.run_pending()
