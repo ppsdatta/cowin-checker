@@ -86,7 +86,6 @@ def make_date_range(sdate, edate):
 
 if __name__ == '__main__':
     states = get_states()
-    state_id = states['Karnataka']
     get_appointments(['Karnataka'],
                      make_date_range(
                          (dt.datetime.today() + dt.timedelta(days=2)).strftime(
