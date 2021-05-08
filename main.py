@@ -50,6 +50,7 @@ def get_appointments(states, dates, minage=45, district_substrings=None):
                 for d in district_substrings:
                     if d.lower() in dname.lower():
                         find = True
+                        break
             else:
                 find = True
 
