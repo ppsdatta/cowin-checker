@@ -127,14 +127,17 @@ def make_date_range(sdate, edate):
 
 
 def check():
-    get_appointments(['Karnataka'],
-                     make_date_range(
-                         (dt.datetime.today() + dt.timedelta(days=1)).strftime(
-                             '%d-%m-%Y'),
-                         (dt.datetime.today() + dt.timedelta(days=10)).strftime(
-                             '%d-%m-%Y')),
-                     minage=18, district_substrings=['bbmp'])
-    print('*' * 20)
+    try:
+        get_appointments(['Karnataka'],
+                         make_date_range(
+                             (dt.datetime.today() + dt.timedelta(days=1)).strftime(
+                                 '%d-%m-%Y'),
+                             (dt.datetime.today() + dt.timedelta(days=10)).strftime(
+                                 '%d-%m-%Y')),
+                         minage=18, district_substrings=['bbmp'])
+        print('*' * 20)
+    except:
+        print('Some error, retrying... :-[')
 
 
 def check_pincodes(pincodes, dates):
@@ -168,4 +171,3 @@ if __name__ == '__main__':
     while True:
         schedule.run_pending()
         time.sleep(1)
-
